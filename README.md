@@ -1,15 +1,5 @@
 === Slidify for Elementor ===
 
-Contributors: latcodes
-Tags: page-builder, elementor, carousel, list-post, post-grid, slifify
-Donate link: https://paypal.me/latheeshvmv
-Requires at least: 6.0.1
-Tested up to: 6.0
-Requires PHP: 7.0
-License: GPL-2.0+
-Stable tag: 8.0.0
-License URI: http://www.gnu.org/licenses/gpl-2.0.txt
-
 Elementor addon to build advanced posts sliders/Carousels. Useful for generating post sliders from your blog posts and custom posts. Supports ACF and WooCommerce
 
 == Description ==
