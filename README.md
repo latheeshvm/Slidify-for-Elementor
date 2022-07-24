@@ -1,4 +1,5 @@
 === Slidify for Elementor ===
+
 Contributors: latcodes
 Tags: page-builder, elementor, carousel, list-post, post-grid, slifify
 Donate link: https://paypal.me/latheeshvmv
