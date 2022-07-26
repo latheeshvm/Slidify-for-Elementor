@@ -896,17 +896,17 @@ namespace CGGOWLCORENSUPG {
             }
         }
 
-        private static function cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key)
+        private static function cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key, $cggowl_allowed)
         {
             if (!empty($cggowl_field_gen) && !empty($cggowl_field_gen[$cggowl_key]['cgggowl_title_wrapper'])) {
-                echo '<'.$cggowl_field_gen[$cggowl_key]['cgggowl_title_wrapper'].'>';
+                echo '<'. wp_kses($cggowl_field_gen[$cggowl_key]['cgggowl_title_wrapper'],  $cggowl_allowed).'>';
             }
         }
 
-        private static function cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key)
+        private static function cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key, $cggowl_allowed)
         {
             if (!empty($cggowl_field_gen) && !empty($cggowl_field_gen[$cggowl_key]['cgggowl_title_wrapper'])) {
-                echo '</'.$cggowl_field_gen[$cggowl_key]['cgggowl_title_wrapper'].'>';
+                echo '</'. wp_kses($cggowl_field_gen[$cggowl_key]['cgggowl_title_wrapper'],  $cggowl_allowed).'>';
             }
         }
 
@@ -1025,11 +1025,11 @@ namespace CGGOWLCORENSUPG {
                 case 'title':
                   $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                     $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key, $cggowl_allowed);
                         //content to print in
                         echo esc_html(the_title_attribute($cggowl_field_gen)); //the_title_attribute which is safe to use
 
-                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                     $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                   $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                 break;
@@ -1037,13 +1037,13 @@ namespace CGGOWLCORENSUPG {
                 case 'content':
                   $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                     $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                         //content to print in
                         $this::cggowl_c_before_placer($cggowl_field_gen, $cggowl_key, $cggowl_allowed);
                           echo wp_kses($this->cggowl_ren_content($cggowl_global_id, $cggowl_field_gen, $cggowl_key), $cggowl_allowed);
                         $this::cggowl_c_after_placer($cggowl_field_gen, $cggowl_key, $cggowl_allowed);
 
-                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                     $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                   $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                 break;
@@ -1051,11 +1051,11 @@ namespace CGGOWLCORENSUPG {
                 case 'excerpt':
                 $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                   $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                    $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                    $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                       //content to print in
                       echo esc_html(get_the_excerpt($engcor_field_gen)); //the_title_attribute which is safe to use
 
-                    $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                    $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                   $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                 $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                 break;
@@ -1063,13 +1063,13 @@ namespace CGGOWLCORENSUPG {
                 case 'metadata':
                   $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                     $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                         //content to print in
                         $cggowl_m_out = $this->cggowl_ren_metadata($cggowl_global_id, $cggowl_field_gen, $cggowl_key);
                         $cggowl_m_out = implode("&nbsp;|&nbsp;", $cggowl_m_out);
                         echo wp_kses($cggowl_m_out, $cggowl_allowed);
 
-                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                     $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                   $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                 break;
@@ -1130,7 +1130,7 @@ namespace CGGOWLCORENSUPG {
 
                     echo '<figure>';
                     echo '<div class="cggowl-containter-image-hold">';
-                    echo $cggowl_img_src;
+                    echo wp_kses($cggowl_img_src, $cggowl_allowed);
                     if ($settings['cgggowl_enable_lazy_load'] == 'yes'):
                         echo '<div class="swiper-lazy-preloader"></div>';
                     endif;
@@ -1148,11 +1148,11 @@ namespace CGGOWLCORENSUPG {
                 $cggowl_shortcode = $this->cggowl_ren_shortcode($cggowl_shortcode);
                 $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                   $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                    $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                    $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                         $this::cggowl_c_before_placer($cggowl_field_gen, $cggowl_key, $cggowl_allowed);
                           echo do_shortcode($cggowl_shortcode);
                         $this::cggowl_c_after_placer($cggowl_field_gen, $cggowl_key, $cggowl_allowed);
-                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                     $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                   $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                 break;
@@ -1163,11 +1163,11 @@ namespace CGGOWLCORENSUPG {
                     $cggowl_average = $product->get_average_rating();
                     $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                     $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                    $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                    $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                     if (!empty($product->get_average_rating())):
                                 echo '<div class="star-rating" title="' . sprintf(__('Rated %s out of 5', 'woocommerce'), intval($cggowl_average)) . '"><span style="width:' . ((intval($cggowl_average) / 5) * 100) . '%"><strong itemprop="ratingValue" class="rating">' . intval($cggowl_average) . '</strong> ' . __('out of 5', 'cggowl') . '</span></div>';
                     endif;
-                    $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                    $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                     $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                     $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                 } else {
@@ -1182,7 +1182,7 @@ namespace CGGOWLCORENSUPG {
                   if (get_post_type(get_the_id()) == 'product') {
                       $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                       $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                       if (($product->is_type('simple')) || ($product->is_type('external'))) {
                           $cggowl_woocommerce_cur       = get_woocommerce_currency_symbol();
                           $cggowl_simple_regualar_price = get_post_meta(get_the_ID(), '_regular_price', true);
@@ -1202,7 +1202,7 @@ namespace CGGOWLCORENSUPG {
                       } else {
                           do_action('cggowl_suppport_for_custom_product_type_hook_act', 'cggowl_suppport_for_custom_product_type');
                       }
-                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                       $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                       $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                   } else {
@@ -1216,9 +1216,9 @@ namespace CGGOWLCORENSUPG {
                   $cggowl_shortcode = $cggowl_field_gen[$cggowl_key]['field_shortcode_elementor'];
                   $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                     $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                         echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($cggowl_shortcode);
-                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                     $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                   $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                   break;
@@ -1227,9 +1227,9 @@ namespace CGGOWLCORENSUPG {
                   $cggowl_html = $cggowl_field_gen[$cggowl_key]['field_html'];
                   $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                     $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                           echo wp_kses($cggowl_html, $cggowl_allowed);
-                        $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                        $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                       $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                   $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                  break;
@@ -1240,11 +1240,11 @@ namespace CGGOWLCORENSUPG {
                   if (!empty($cggowl_data)) {
                       $this::cgggowl_make_clickable_start($cggowl_make_clickable);
                       $this::cggowl_field_start($cggowl_field_gen, $cggowl_key);
-                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_start($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                       $this::cggowl_c_before_placer($cggowl_field_gen, $cggowl_key, $cggowl_allowed);
                       echo wp_kses($cggowl_data, $cggowl_allowed);
                       $this::cggowl_c_after_placer($cggowl_field_gen, $cggowl_key, $cggowl_allowed);
-                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key);
+                      $this::cggowl_field_wrapper_end($cggowl_field_gen, $cggowl_key,$cggowl_allowed);
                       $this::cggowl_field_end($cggowl_field_gen, $cggowl_key);
                       $this::cgggowl_make_clickable_end($cggowl_make_clickable);
                   }
