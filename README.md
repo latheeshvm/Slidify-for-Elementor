@@ -1,5 +1,5 @@
-=== Slidify for Elementor ===
-
+<h1>=== Slidify for Elementor ===</h1>
+<hr>
 Elementor addon to build advanced posts sliders/Carousels. Useful for generating post sliders from your blog posts and custom posts. Supports ACF and WooCommerce
 
 == Description ==
